@@ -52,7 +52,7 @@ class Login extends React.Component {
         <Form
           elements={elements}
           onSubmit={this.onSubmit}
-          submitEnabled={! this.props.registerInProgress} />
+          submitEnabled={! this.props.loginInProgress} />
         { this.props.loginInProgress && loadingIndicator }
         { this.props.error && <div>{this.props.error}</div> }
       </div>
