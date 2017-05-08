@@ -1,0 +1,7 @@
+const config = {
+  IdentityPoolId: '',
+  UserPoolId: '',
+  ClientId: ''
+};
+
+export default config;
