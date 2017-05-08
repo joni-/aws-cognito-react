@@ -16,7 +16,6 @@
     "redux-saga": "^0.15.3"
   },
   "devDependencies": {
-    "@kadira/storybook": "^2.21.0",
     "react-scripts": "0.9.5"
   },
   "scripts": {
