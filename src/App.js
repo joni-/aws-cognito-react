@@ -5,6 +5,9 @@ import { Provider } from 'react-redux';
 import { Col, Grid, Row } from 'react-bootstrap';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
+import Layout from './Layout';
+import Welcome from './Pages/Welcome';
+import Profile from './Pages/Profile';
 import Signup from './Auth/Signup';
 import Confirm from './Auth/Confirm';
 import Login from './Auth/Login';
@@ -14,6 +17,8 @@ import store from './store';
 const MyRoutes = () => (
   <Router>
     <div>
+      <Route path="/" exact component={Welcome} />
+      <Route path="/profile" component={Profile} />
       <Route path="/signup" component={Signup} />
       <Route path="/confirm" component={Confirm} />
       <Route path="/login" component={Login} />
@@ -27,7 +32,9 @@ const App = () => (
       <Row>
         <Col xs={3}></Col>
         <Col xs={6}>
-          <MyRoutes />
+          <Layout>
+            <MyRoutes />
+          </Layout>
         </Col>
         <Col xs={3}></Col>
       </Row>
