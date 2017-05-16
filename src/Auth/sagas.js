@@ -24,8 +24,8 @@ function* confirm(action) {
 
 function* login(action) {
   try {
-    yield call(CognitoService.login, action);
-    yield put({ type: Types.loginSuccess });
+    const result = yield call(CognitoService.login, action);
+    yield put({ type: Types.loginSuccess, user: result });
   } catch (error) {
     yield put({ type: Types.loginFail, error: error.message });
   }

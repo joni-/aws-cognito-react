@@ -6,6 +6,7 @@ import { Col, Grid, Row } from 'react-bootstrap';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import Layout from './Layout';
+import RequireAuth from './RequireAuth';
 import Welcome from './Pages/Welcome';
 import Profile from './Pages/Profile';
 import Signup from './Auth/Signup';
@@ -18,7 +19,7 @@ const MyRoutes = () => (
   <Router>
     <div>
       <Route path="/" exact component={Welcome} />
-      <Route path="/profile" component={Profile} />
+      <Route path="/profile" component={RequireAuth(Profile)} />
       <Route path="/signup" component={Signup} />
       <Route path="/confirm" component={Confirm} />
       <Route path="/login" component={Login} />
