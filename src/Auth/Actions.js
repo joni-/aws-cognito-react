@@ -8,6 +8,7 @@ const Types = {
   login: 'LOGIN',
   loginSuccess: 'LOGIN_SUCCESS',
   loginFail: 'LOGIN_FAIL',
+  logout: 'LOGOUT'
 };
 
 const register = (email, password) => ({
@@ -28,10 +29,15 @@ const login = (email, password) => ({
   password
 });
 
+const logout = () => ({
+  type: Types.logout
+});
+
 const Actions = {
   register,
   confirm,
-  login
+  login,
+  logout
 };
 
 export { Types };

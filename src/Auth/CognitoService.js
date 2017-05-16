@@ -72,12 +72,26 @@ const login = ({ email, password }) => {
   });
 };
 
+const getCurrentUser = () => {
+  return userPool.getCurrentUser();
+};
 
+const logout = () => {
+  return new Promise((success) => {
+    const cognitoUser = userPool.getCurrentUser();
+    if (cognitoUser !== null) {
+      cognitoUser.signOut();
+    }
+    success();
+  });
+};
 
 const CognitoService = {
   register,
   confirm,
-  login
+  login,
+  getCurrentUser,
+  logout
 };
 
 export default CognitoService;

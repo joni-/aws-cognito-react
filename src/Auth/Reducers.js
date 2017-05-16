@@ -1,13 +1,15 @@
 import { combineReducers } from 'redux';
 
 import { Types } from './Actions';
+import CognitoService from './CognitoService';
+
 
 const initialState = {
   registerInProgress: false,
   loginInProgress: false,
   askConfirmation: false,
   error: null,
-  user: null,
+  user: CognitoService.getCurrentUser(),
   confirmationSucceeded: false
 };
 
@@ -31,6 +33,8 @@ const AuthReducer = (state = initialState, action) => {
       return { ...state, loginInProgress: false, user: action.user, error: null };
     case Types.loginFail:
       return { ...state, loginInProgress: false, error: action.error };
+    case Types.logout:
+      return { ...state, user: null };
     default:
       return state;
   }

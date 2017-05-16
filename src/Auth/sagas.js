@@ -31,10 +31,15 @@ function* login(action) {
   }
 }
 
+function* logout() {
+  yield call(CognitoService.logout);
+}
+
 function* authSaga() {
   yield takeLatest(Types.register, register);
   yield takeLatest(Types.confirm, confirm);
   yield takeLatest(Types.login, login);
+  yield takeLatest(Types.logout, logout);
 }
 
 export default authSaga;
