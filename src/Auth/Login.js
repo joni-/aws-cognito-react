@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import FontAwesome from 'react-fontawesome';
 
 import Actions from './Actions';
@@ -21,6 +22,10 @@ class Login extends React.Component {
   }
 
   render() {
+    if (this.props.isAuthenticated) {
+      return <Redirect to={{ pathname: '/profile' }} />;
+    }
+
     const email = {
       type: 'text',
       label: 'Email',
@@ -62,7 +67,8 @@ class Login extends React.Component {
 
 const mapStateToProps = (state) => ({
   loginInProgress: state.auth.loginInProgress,
-  error: state.auth.error
+  error: state.auth.error,
+  isAuthenticated: state.auth.user !== null
 });
 
 const mapDispatchToProps = (dispatch) => ({
