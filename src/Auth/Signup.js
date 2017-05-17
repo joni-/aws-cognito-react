@@ -23,7 +23,11 @@ class Signup extends React.Component {
 
   render() {
     if (this.props.askConfirmation) {
-      return <Redirect to={{ pathname: '/confirm' }} />
+      return <Redirect to={{ pathname: '/confirm' }} />;
+    }
+
+    if (this.props.isAuthenticated) {
+      return <Redirect to={{ pathname: '/profile' }} />;
     }
 
     const email = {
@@ -68,7 +72,8 @@ class Signup extends React.Component {
 const mapStateToProps = (state) => ({
   registerInProgress: state.auth.registerInProgress,
   error: state.auth.error,
-  askConfirmation: state.auth.askConfirmation
+  askConfirmation: state.auth.askConfirmation,
+  isAuthenticated: state.auth.user !== null
 });
 
 const mapDispatchToProps = (dispatch) => ({
