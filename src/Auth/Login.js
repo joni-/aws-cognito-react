@@ -68,7 +68,7 @@ class Login extends React.Component {
 const mapStateToProps = (state) => ({
   loginInProgress: state.auth.loginInProgress,
   error: state.auth.error,
-  isAuthenticated: state.auth.user !== null
+  isAuthenticated: state.auth.isAuthenticated
 });
 
 const mapDispatchToProps = (dispatch) => ({

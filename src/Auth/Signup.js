@@ -73,7 +73,7 @@ const mapStateToProps = (state) => ({
   registerInProgress: state.auth.registerInProgress,
   error: state.auth.error,
   askConfirmation: state.auth.askConfirmation,
-  isAuthenticated: state.auth.user !== null
+  isAuthenticated: state.auth.isAuthenticated
 });
 
 const mapDispatchToProps = (dispatch) => ({

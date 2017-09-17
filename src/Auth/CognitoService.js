@@ -86,12 +86,37 @@ const logout = () => {
   });
 };
 
+const isAuthenticated = () => {
+  return new Promise((success, reject) => {
+    const cognitoUser = userPool.getCurrentUser();
+
+    if (! cognitoUser) {
+      reject('Could not retrieve current user');
+      return;
+    }
+
+    cognitoUser.getSession((err, session) => {
+      if (err) {
+        reject('Error retrieving user session: ', err);
+        return;
+      }
+
+      if (session.isValid()) {
+        success();
+      } else {
+        reject('Session is not valid');
+      }
+    });
+  });
+};
+
 const CognitoService = {
   register,
   confirm,
   login,
   getCurrentUser,
-  logout
+  logout,
+  isAuthenticated
 };
 
 export default CognitoService;

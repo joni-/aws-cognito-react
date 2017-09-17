@@ -10,7 +10,9 @@ const initialState = {
   askConfirmation: false,
   error: null,
   user: CognitoService.getCurrentUser(),
-  confirmationSucceeded: false
+  confirmationSucceeded: false,
+  isAuthenticated: false,
+  ensuringLoggedInStatus: false
 };
 
 const AuthReducer = (state = initialState, action) => {
@@ -30,11 +32,17 @@ const AuthReducer = (state = initialState, action) => {
     case Types.login:
       return { ...state, loginInProgress: true };
     case Types.loginSuccess:
-      return { ...state, loginInProgress: false, user: action.user, error: null };
+      return { ...state, loginInProgress: false, user: action.user, error: null, isAuthenticated: true };
     case Types.loginFail:
       return { ...state, loginInProgress: false, error: action.error };
     case Types.logout:
-      return { ...state, user: null };
+      return { ...state, user: null, isAuthenticated: false };
+    case Types.ensuringLoggedInStatus:
+      return { ...state, ensuringLoggedInStatus: true };
+    case Types.ensureLoggedInFail:
+      return { ...state, isAuthenticated: false, error: action.error, user: null, ensuringLoggedInStatus: false };
+    case Types.ensureLoggedInSuccess:
+      return { ...state, isAuthenticated: true, error: null, ensuringLoggedInStatus: false };
     default:
       return state;
   }

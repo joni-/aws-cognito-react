@@ -35,11 +35,24 @@ function* logout() {
   yield call(CognitoService.logout);
 }
 
+function* ensureLoggedIn() {
+  try {
+    yield put({ type: Types.ensuringLoggedInStatus });
+    yield call(CognitoService.isAuthenticated);
+    console.log('Logged in status OK');
+    yield put({ type: Types.ensureLoggedInSuccess });
+  } catch (error) {
+    console.log('User not logged in: ' + error);
+    yield put({ type: Types.ensureLoggedInFail, error: error });
+  }
+}
+
 function* authSaga() {
   yield takeLatest(Types.register, register);
   yield takeLatest(Types.confirm, confirm);
   yield takeLatest(Types.login, login);
   yield takeLatest(Types.logout, logout);
+  yield takeLatest(Types.ensureLoggedIn, ensureLoggedIn);
 }
 
 export default authSaga;

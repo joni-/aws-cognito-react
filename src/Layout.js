@@ -16,7 +16,7 @@ const Navigation = ({ isAuthenticated, logout }) => (
 );
 
 const mapStateToProps = (state) => ({
-  isAuthenticated: state.auth.user !== null
+  isAuthenticated: state.auth.isAuthenticated
 });
 
 const mapDispatchToProps = (dispatch) => ({
